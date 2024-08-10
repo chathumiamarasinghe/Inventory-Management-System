@@ -1,0 +1,31 @@
+.custom-signin-btn {
+  background-color: #5d5aed;
+  border-color: #5d5aed;
+  color: #ffffff;
+  width: 120px;
+}
+.background-radial-gradient {
+  background-color: #3a25a2;
+  background-image: radial-gradient(
+      650px circle at 0% 0%,
+      #3d209c 15%,
+      #2b285b 35%,
+      #30285b 75%,
+      #28209c 80%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1250px circle at 100% 100%,
+      #2f285b 15%,
+      #20339c 35%,
+      #282b5b 75%,
+      #202c9c 80%,
+      transparent 100%
+    );
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
