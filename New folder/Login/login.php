@@ -1,3 +1,37 @@
+<?php include_once "../dbc.php"; ?>
+<?php
+$error_email = '';
+$error_password = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT password FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+    
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($hashed_password);
+        $stmt->fetch();
+        
+        if (password_verify($password, $hashed_password)) {
+            echo "<script>alert('Login successful!');</script>";
+        } else {
+            $error_password = 'Invalid credentials!';
+        }
+    } else {
+        $error_email = 'No account found with that email!';
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +58,7 @@
                         <span style="color: hsl(218, 81%, 75%)">Login to Your Account</span>
                     </h1>
                     <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                        Please enter your email and password to log in. If you don't have an account, you can sign up.
+                        Please enter your Email and password to log in. If you don't have an account, you can sign up.
                     </p>
                 </div>
             <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
@@ -35,22 +69,22 @@
                   <form action="" method="post">
 
                     <div class="form-group mb-4">
-                        <input type="text" class="form-control">
-                        <label for="inputusername">Username</label>
+                        <input type="email" class="form-control" name="email" required>
+                        <label for="inputemail">Email</label>
                     </div>
 
                     <div class="form-group mb-4">
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" name="password" required>
                         <label for="inputpassword">Password</label>
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn custom-signin-btn mb-4 me-4">Login</button>
+                        <button type="submit" class="btn custom-signin-btn mb-4 me-4" name="submit">Login</button>
                     </div>
 
                     <div class="text-center d-flex justify-content-center align-items-center">
                                  <p class="mb-0 me-2"> haven't an account</p>
-                                   <a href="#" class="btn custom-signin-btn mb-2">
+                                   <a href="../Register/register.php" class="btn custom-signin-btn mb-2">
                                     Sign Up
                                    </a>
                     </div>
