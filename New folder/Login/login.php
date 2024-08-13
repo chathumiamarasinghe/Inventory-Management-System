@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
             <div class="card m-5 px-4 py-5" style="width:500px">
                 <div class="card-body">
-                  <form action="" method="post">
+                  <form action="../include/header.php" method="post">
 
                     <div class="form-group mb-4">
                         <input type="email" class="form-control" name="email" required>
