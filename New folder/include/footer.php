@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer</title>
     <Style>
-        /* Make sure the body and html take full height */
+        
 html, body {
     height: 100%;
     margin: 0;
@@ -13,12 +13,12 @@ html, body {
     flex-direction: column;
 }
 
-/* The content container should take all available space */
+
 .container-fluid {
     flex: 1;
 }
 
-/* Footer styling */
+
 .footer {
     background-color: #045db5;
     color: white;
